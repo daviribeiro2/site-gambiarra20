@@ -107,14 +107,16 @@
             <label>Rebocadores:</label>
             <div class="checkbox-group">
                 <label><input type="checkbox" class="tugs" value="Humberto (Saveiros Camuyrano)"> Humberto (Saveiros Camuyrano)</label>
-                <label><input type="checkbox" class="tugs" value="Virgo (Saveiros Camuyrano)"> Virgo (Saveiros Camuyrano)</label>
+                <label><input type="checkbox" class="tugs" value="WS Virgo (Saveiros Camuyrano)"> Virgo (Saveiros Camuyrano)</label>
+                <label><input type="checkbox" class="tugs" value="WS Hydrus (Saveiros Camuyrano)"> WS Hydrus (Saveiros Camuyrano)</label>
                 <label><input type="checkbox" class="tugs" value="Marte (Saveiros Camuyrano)"> Marte (Saveiros Camuyrano)</label>
-                <label><input type="checkbox" class="tugs" value="SAAM Terena (SAAM Towage)"> SAMM Terena (Saam Towage)</label>
-                <label><input type="checkbox" class="tugs" value="SAAM Tupi (SAAM Towage)"> SAAM Tupi (Saam Towage)</label>
-                <label><input type="checkbox" class="tugs" value="SAAM Ticuna (SAAM Towage)"> SAAM Ticuna (Saam Towage)</label>
-                <label><input type="checkbox" class="tugs" value="Phillipe (SAAM Towage)"> Phillipe (Saam Towage)</label>
+                <label><input type="checkbox" class="tugs" value="SAAM Terena (SAAM Towage)"> SAAM Terena (SAAM Towage)</label>
+                <label><input type="checkbox" class="tugs" value="SAAM Tupi (SAAM Towage)"> SAAM Tupi (SAAM Towage)</label>
+                <label><input type="checkbox" class="tugs" value="SAAM Ticuna (SAAM Towage)"> SAAM Ticuna (SAAM Towage)</label>
+                <label><input type="checkbox" class="tugs" value="Phillipe (SAAM Towage)"> Phillipe (SAAM Towage)</label>
                 <label><input type="checkbox" class="tugs" value="Svitzer Denise (Svitzer)"> Svitzer Denise (Svitzer)</label>
                 <label><input type="checkbox" class="tugs" value="Svitzer Arthur (Svitzer)"> Svitzer Arthur (Svitzer)</label>
+                <label><input type="checkbox" class="tugs" value="Svitzer Zoe (Svitzer)"> Svitzer Zoe (Svitzer)</label>                
             </div>
 
             <label for="pilot">Prático:</label>
@@ -209,7 +211,7 @@
                 `${new Date().toLocaleDateString("pt-BR", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
                     .replace(/^./, (match) => match.toUpperCase())}\n` +
                 `${berth}\n\n` +
-                `*Rebocadores:* | _Tugs_\n${tugs || "Nenhum rebocador selecionado"}\n\n` +
+                `*Rebocadores* | _Tugs_*:*\n${tugs || "Nenhum rebocador selecionado"}\n\n` +
                 `*Prático* | _Pilot_*:*\n${pilot}\n\n` +
                 `*Timesheet de Manobra:*\n` +
                 `*Prático a bordo* | _Pilot on board_*:* ${pilotOnBoard}\n` +
