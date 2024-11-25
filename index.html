@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de atracação e desatracação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #00509E;
+        }
+        .form-section, .output-section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #00509E;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #003f7e;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .remarks {
+            background: #f9f9f9;
+            border-left: 4px solid #00509E;
+            padding: 10px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        .conditional-fields {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório de Atracação e Desatracação</h1>
+        <div class="form-section">
+            <h2>Preencha as informações</h2>
+            <label for="shipName">Nome do navio:</label>
+            <input type="text" id="shipName" value="">
+
+            <label for="reportType">Tipo de relatório:</label>
+            <select id="reportType" onchange="updateFields()">
+                <option value="atracação">atracação</option>
+                <option value="desatracação">desatracação</option>
+            </select>
+
+            <label for="berth">Berço:</label>
+            <select id="berth">
+                <optgroup label="Porto do Mucuripe">
+                    <option>Berço 101, Cais Comercial, Porto do Mucuripe</option>
+                    <option>Berço 102, Cais Comercial, Porto do Mucuripe</option>
+                    <option>Berço 103, Cais Comercial, Porto do Mucuripe</option>
+                    <option>Berço 104, Cais Comercial, Porto do Mucuripe</option>
+                    <option>Berço 105, Cais Comercial, Porto do Mucuripe</option>
+                    <option>Berço 106, Cais Comercial, Porto do Mucuripe</option>
+                    <option>Berço 201, Píer Petroleiro, Porto do Mucuripe</option>
+                    <option>Berço 202, Píer Petroleiro, Porto do Mucuripe</option>
+                </optgroup>
+                <optgroup label="Terminal Portuário do Pecém">
+                    <option>Berço 1, Cais Comercial, Terminal Portuário do Pecém</option>
+                    <option>Berço 2, Cais Comercial, Terminal Portuário do Pecém</option>
+                    <option>Berço 3, Píer Petroleiro, Terminal Portuário do Pecém</option>
+                    <option>Berço 4, Píer Petroleiro, Terminal Portuário do Pecém</option>
+                    <option>Berço 5, Cais Comercial, Terminal Portuário do Pecém</option>
+                    <option>Berço 6, Cais Comercial, Terminal Portuário do Pecém</option>
+                    <option>Berço 7, Cais Comercial, Terminal Portuário do Pecém</option>
+                    <option>Berço 8, Cais Comercial, Terminal Portuário do Pecém</option>
+                    <option>Berço 9, Cais Comercial, Terminal Portuário do Pecém</option>
+                    <option>Berço 10, Cais Comercial, Terminal Portuário do Pecém</option>
+                </optgroup>
+            </select>
+
+            <label>Rebocadores:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" class="tugs" value="Humberto (Saveiros Camuyrano)"> Humberto (Saveiros Camuyrano)</label>
+                <label><input type="checkbox" class="tugs" value="Virgo (Saveiros Camuyrano)"> Virgo (Saveiros Camuyrano)</label>
+                <label><input type="checkbox" class="tugs" value="Marte (Saveiros Camuyrano)"> Marte (Saveiros Camuyrano)</label>
+                <label><input type="checkbox" class="tugs" value="SAAM Terena (SAAM Towage)"> SAMM Terena (Saam Towage)</label>
+                <label><input type="checkbox" class="tugs" value="SAAM Tupi (SAAM Towage)"> SAAM Tupi (Saam Towage)</label>
+                <label><input type="checkbox" class="tugs" value="SAAM Ticuna (SAAM Towage)"> SAAM Ticuna (Saam Towage)</label>
+                <label><input type="checkbox" class="tugs" value="Phillipe (SAAM Towage)"> Phillipe (Saam Towage)</label>
+                <label><input type="checkbox" class="tugs" value="Svitzer Denise (Svitzer)"> Svitzer Denise (Svitzer)</label>
+                <label><input type="checkbox" class="tugs" value="Svitzer Arthur (Svitzer)"> Svitzer Arthur (Svitzer)</label>
+            </div>
+
+            <label for="pilot">Prático:</label>
+            <select id="pilot">
+                <option value="Celso Pinto Monteiro Filho">Celso Pinto Monteiro Filho</option>
+                <option value="Jorge Luiz Sylvestre">Jorge Luiz Sylvestre</option>
+                <option value="Rogerio Marcos Viana Bessa">Rogerio Marcos Viana Bessa</option>
+                <option value="Joao Carlos Correa de Albuquerque Feijo">Joao Carlos Correa de Albuquerque Feijo</option>
+                <option value="Isaac Alberto Mazal">Isaac Alberto Mazal</option>
+                <option value="Bruno Fonseca de Oliveira">Bruno Fonseca de Oliveira</option>
+                <option value="Handerson Montalvao Dos Santos">Handerson Montalvao Dos Santos</option>
+                <option value="Edgar Campos Custodio">Edgar Campos Custodio</option>
+                <option value="Joao Victor Osorio de Almeida">Joao Victor Osorio de Almeida</option>
+                <option value="Pedro Henrique Parente Albuquerque">Pedro Henrique Parente Albuquerque</option>
+                <option value="Thiago de Lima Nascimento">Thiago de Lima Nascimento</option>
+                <option value="Cesário Augusto Alcântara Ferreira">Cesário Augusto Alcântara Ferreira</option>
+                <option value="Erivaldo Santos Lopes">Erivaldo Santos Lopes</option>
+            </select>
+
+            <div id="timesheetFields" class="conditional-fields">
+                <label for="pilotOnBoard">Prático a bordo | Pilot on board:</label>
+                <input type="time" id="pilotOnBoard">
+
+                <label id="line1Label" for="line1">Primeiro cabo encapelado | First Line on Shore:</label>
+                <input type="time" id="line1">
+
+                <label id="line2Label" for="line2">Último cabo encapelado | Last Line on Shore:</label>
+                <input type="time" id="line2">
+
+                <label for="pilotOut">Desembarque do prático | Pilot out:</label>
+                <input type="time" id="pilotOut">
+            </div>
+
+            <button id="generateReport">Gerar Relatório</button>
+        </div>   
+
+        <div class="output-section">
+            <h2>Relatório Gerado</h2>
+            <div id="reportOutput" style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 8px;"></div>
+            <button id="copyReportButton">Copiar Relatório</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para formatar o nome do navio
+        function capitalizeWords(str) {
+            return str
+                .toLowerCase()
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+
+        // Função para atualizar os campos conforme o tipo de operação
+        function updateFields() {
+            const reportType = document.getElementById("reportType").value;
+            const line1Label = document.getElementById("line1Label");
+            const line2Label = document.getElementById("line2Label");
+
+            if (reportType === "atracação") {
+                line1Label.textContent = "Primeiro cabo encapelado | First Line on Shore:";
+                line2Label.textContent = "Último cabo encapelado | Last Line on Shore:";
+            } else if (reportType === "desatracação") {
+                line1Label.textContent = "Primeiro cabo solto | First Line away:";
+                line2Label.textContent = "Último cabo solto | Last Line away:";
+            }
+        }
+
+        document.getElementById("generateReport").addEventListener("click", function () {
+            const shipName = capitalizeWords(document.getElementById("shipName").value.trim());
+            const reportType = document.getElementById("reportType").value;
+            const berth = document.getElementById("berth").value;
+            const tugs = Array.from(document.querySelectorAll(".tugs:checked"))
+                .map((checkbox) => checkbox.value)
+                .join("\n");
+            const pilot = document.getElementById("pilot").value;
+            const pilotOnBoard = document.getElementById("pilotOnBoard").value || "Não informado";
+            const line1 = document.getElementById("line1").value || "Não informado";
+            const line2 = document.getElementById("line2").value || "Não informado";
+            const pilotOut = document.getElementById("pilotOut").value || "Não informado";
+
+            const line1Label = document.getElementById("line1Label").textContent.split('|')[0].trim();
+            const line2Label = document.getElementById("line2Label").textContent.split('|')[0].trim();
+
+
+            const remarks = (reportType === "atracação")
+            ? "Findada manobra, apenas a título de lembrete, caso aplicável, observar que necessário fazer a atracação deste no sistema da Receita. Obrigado!"
+            : "Findada manobra, apenas a título de lembrete, caso aplicável, observar que necessário fazer a desatracação deste no sistema da Receita. Obrigado!.";
+
+
+            const report = `*${shipName}: Relatório de ${reportType}*\n` +
+                `${new Date().toLocaleDateString("pt-BR", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+                    .replace(/^./, (match) => match.toUpperCase())}\n` +
+                `${berth}\n\n` +
+                `*Rebocadores:* | _Tugs_\n${tugs || "Nenhum rebocador selecionado"}\n\n` +
+                `*Prático* | _Pilot_*:*\n${pilot}\n\n` +
+                `*Timesheet de Manobra:*\n` +
+                `*Prático a bordo* | _Pilot on board_*:* ${pilotOnBoard}\n` +
+                `*${line1Label}* | ${(reportType === "atracação") ? "_First Line on Shore_" : "_First Line away_"}: ${line1}\n` +
+                `*${line2Label}* | ${(reportType === "atracação") ? "_Last Line on Shore_" : "_Last Line away_"}: ${line2}\n` +
+                `*Desembarque do prático* | _Pilot out_*:* ${pilotOut}\n\n` +
+                `*Remarks:*\n${remarks}`;   
+
+            document.getElementById("reportOutput").textContent = report;
+        });
+
+        // Função para copiar o relatório gerado para a área de transferência
+            document.getElementById("copyReportButton").addEventListener("click", function () {
+                const reportOutput = document.getElementById("reportOutput").textContent;
+                if (reportOutput) {
+                    navigator.clipboard.writeText(reportOutput)
+                        .then(() => {
+                            alert("Relatório copiado para a área de transferência!");
+                        })
+                        .catch(() => {
+                            alert("Erro ao copiar o relatório.");
+                        });
+                } else {
+                    alert("Não há relatório gerado para copiar.");
+    }
+});          
+
+
+    </script>
+
+</body>
+</html>
